@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Collections | The Unconventional Photography Collective</title>
+
+  <!--Fonts -->
+  <link rel="stylesheet" href="https://use.typekit.net/zur0syi.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'brother-1816', sans-serif;
+      font-weight: 100;
+      font-style: normal;
+      margin-top: 25px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    .logo {
+      width: 150px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      margin-left: 35px;
+    }
+
+    .logo img {
+      max-width: 250%;
+      max-height: 250%;
+      object-fit: contain;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      margin-right: 45px;
+    }
+
+    .icon,
+    .icon.small {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .icon.small {
+      margin-left: 10px;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 5px 5px;
+      background-color: white;
+    }
+
+    .search-container input {
+      border: none;
+      outline: none;
+      padding: 5px;
+      font-size: 14px;
+      font-family: 'brother-1816', sans-serif;
+      font-weight: 100;
+      width: 300px;
+    }
+
+    .vertical-divider {
+      width: 1.4px;
+      height: 50px;
+      background-color: #ccc;
+      margin: 0 15px;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 145px;
+      list-style: none;
+      padding: 20px 0;
+      margin: 0;
+    }
+
+    .nav-bar li {
+      font-size: 18px;
+      cursor: pointer;
+      padding: 5px;
+      color: black;
+      transition: 0.3s;
+      font-family: 'brother-1816', sans-serif;
+      font-style: normal;
+      font-weight: 300;
+    }
+
+    .nav-bar li.active {
+      color: gray;
+      border-bottom: 1px solid gray;
+    }
+
+    .nav-bar li a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 0px 0px 14px;
+      text-align: center;
+      font-family: 'brother-1816', sans-serif;
+      font-weight: 100;
+    }
+
+    .footer-top {
+      background-color: #eee;
+      padding: 10px;
+      color: black;
+    }
+
+    .footer-info {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 38px;
+    }
+
+    .footer-icons img {
+      width: 30px;
+      vertical-align: middle;
+    }
+
+    .footer-note {
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .icon-tiny {
+      width: 20px;
+      vertical-align: middle;
+    }
+
+    @media (max-width: 1000px) {
+      .footer-info {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+    }
+
+    .collections-section {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      font-family: 'brother-1816', sans-serif;
+    }
+
+    .collections-section h2 {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: 100;
+      letter-spacing: 1px;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      padding: 5px 0;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .collection-title {
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding-top: 7px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      letter-spacing: 0.5px;
+      color: #000;
+    }
+
+    .collection-subtitle {
+      font-size: 15 px;
+      font-weight: 300;
+      color: #555;
+      text-transform: none;
+      margin-left: 5px;
+    }
+
+    .view-website {
+      font-size: 15px;
+      color: #7c90cb;
+      float: right;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .collection-container {
+      display: flex;
+      gap: 20px;
+      margin-top: 15px;
+      margin-bottom: 40px;
+    }
+
+    .collection-text {
+      width: 60%;
+      height: 459px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      font-size: 14px;
+      line-height: 1.5;
+      background: #f9f9f9;
+    }
+
+    .collection-text p {
+  margin-bottom: 8px; 
+  text-indent: 20px; 
+  line-height: 1.7; 
+}
+
+.collection-text strong {
+  display: block;
+  margin-bottom: -30px;
+  font-size: 15px;
+}
+
+.collection-text {
+  padding: 15px; 
+  background: #f9f9f9;
+  border-radius: 4px;
+  text-align: justify; 
+}
+    /* Scrollbar */
+    .collection-text::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .collection-text::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 4px;
+    }
+
+    .collection-text::-webkit-scrollbar-thumb:hover {
+      background-color: #999;
+    }
+
+    .collection-text::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+    }
+
+    .carousel-container {
+      width: 65%;
+      text-align: center;
+    }
+
+    .carousel-main img {
+      width: 100%;
+      max-height: 900px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+    }
+
+    .carousel-thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .carousel-thumbnails img {
+      width: 50px;
+      height: 40px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s, border 0.3s;
+    }
+
+    .carousel-thumbnails img.active {
+      opacity: 1;
+      border: 2px solid gray;
+    }
+
+    .pagination {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <div class="header-top">
+    <div class="logo">
+      <img src="logo.jpg" alt="Website's Logo" />
+    </div>
+    <div class="header-right">
+      <img class="icon" src="SHOPPINGFORWEBSITE.jpg" alt="Cart" />
+      <div class="vertical-divider"></div>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." />
+      </div>
+      <img class="icon small" src="SEARCHFORWEBSITE.jpg" alt="Search" />
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <ul class="nav-bar">
+      <li><a href="index.html">HOME</a></li>
+      <li class="active"><a href="collections.html">COLLECTIONS</a></li>
+      <li><a href="photographers.html">PHOTOGRAPHERS</a></li>
+      <li><a href="articles.html">ARTICLES</a></li>
+      <li><a href="submit-work.html">SUBMIT WORK</a></li>
+      <li><a href="shop.html">SHOP</a></li>
+    </ul>
+  </div>
+
+  <!-- Collections -->
+  <div class="collections-section">
+    <h2>THIS MONTH'S PHOTOBOOK</h2>
+
+    <!-- FOR THE STRANGE AND OTHER -->
+    <div class="collection-title">
+      FOR THE STRANGE AND OTHER <span class="collection-subtitle">JACOB RAMOUR</span>
+      <a href="https://en.wikipedia.org/wiki/Women_Who_Run_with_the_Wolves" class="view-website" target="_blank" rel="noopener noreferrer">VIEW ARTIST’S WEBSITE HERE</a>
+
+    </div>
+    <div class="collection-container">
+      <div class="collection-text">
+        <strong>ABOUT THIS COLLECTION</strong><br><br>
+        <p>In Jacob Ramour’s evocative photography collection For the Strange and Other, the eye is not merely guided—it is stalked, trailed, and drawn into something unnameable, something primal. His lens captures a world where women and their canine companions exist in symbiosis—not in decorative harmony, but in spiritual, feral alignment. Through a series of meticulously composed yet viscerally raw portraits, Ramour constructs a mythology of untamed femininity—one where the border between human and animal is blurred, and where wildness is not only allowed, but revered. </p>
+        <p>The collection does not lean on the sentimental imagery that often defines pet photography. Ramour’s dogs are not pets. They are not accessories, nor comforting symbols of domestic affection. They are counterparts—spiritual kin, protectors, muses, and in some instances, mirrors. Likewise, the women in these photographs are not posed in softness or subservience. They are present with a kind of quiet authority, eyes level, spines strong, their gestures both intimate and unflinching. Whether crouching beside sleek greyhounds, embracing the massive weight of mastiffs, or resting their heads against the alert, upright ears of shepherds, these women are captured as if in the act of remembering something ancient. The resulting images feel less like posed portraits and more like visual folklore—each frame a vignette from an unwritten legend of the wild feminine.
+        <p>Ramour’s work sits at the intersection of the symbolic and the bodily. Every photograph in For the Strange and Other hums with texture—coarse fur against soft skin, the gleam of a canine eye beside the matte of wind-tangled hair, the lurch of a leg in motion mirrored by a bounding paw. He is an orchestrator of shadows and light, and the chiaroscuro effect he employs brings a painterly quality to the images, at times reminiscent of Dutch portraiture, at others calling forth the drama of Romantic landscapes. But rather than fixate on beauty in the traditional sense, Ramour uses light to evoke sensation: the warm wetness of a dog’s breath in cold air, the press of flesh against muscle, the subtle flex of claws against earth. </p>
+        <p>One striking element throughout the collection is Ramour’s refusal to depict hierarchy. In these images, woman and dog are not subject and object, not mistress and pet, but equals—or even, in some frames, the dog is foregrounded as if it were the leader of the pair. A woman crouches in a winter field, half-nude, her eyes locked onto the camera, while her Doberman stands behind her, eyes in the same direction, poised and alert. In another image, a woman and her dog both lie belly-down in tall grass, their bodies nearly indistinguishable in the tangle of limbs and undergrowth. Ramour invites the viewer to look closely—not to fetishize, but to consider: where does the human body end and the animal one begin? What makes us different? What might happen if those differences dissolve? </p>
+        <p>At its core, For the Strange and Other is about thresholds—the spaces between wild and tame, instinct and intellect, female and feral, language and howl. The dog, throughout history, has served as both a companion to humans and a symbol of loyalty, protection, and animal instinct. By pairing women so closely with dogs, Ramour taps into a deep cultural resonance: the she-wolf who suckled Romulus and Remus; Artemis with her hunting hounds; the folkloric trope of the witch and her familiar. Yet Ramour’s imagery is not nostalgic—it is confrontational. His women are not of the past. They are contemporary, unadorned by the trappings of fantasy, and yet their connection to their canine counterparts makes them feel timeless, eternal. </p>
+        <p>This notion of the “strange and other” that the collection is named for operates on multiple levels. It refers to the societal position of those—especially women—who do not conform to expected norms of behavior, appearance, or softness. Ramour seems interested in reclaiming this estrangement, in showing it as a source of power rather than shame. His subjects do not smile for the camera. They rarely engage in traditional femininity. Their strength lies in their refusal to be easily understood. They are allowed to be hard to name, hard to pin down—just like the dogs who move through the frames with equal mystery.</p>
+        <p>The landscapes in which these pairings are set reinforce this tension between civilization and the wild. Many of the photographs are taken in liminal spaces: the edge of a forest, an abandoned house, a fog-choked field, or the cracked pavement of an urban ruin. These backdrops feel like dreamscapes—places where rules have loosened, where language is unnecessary, where something else, older, governs. In one image, a woman stands barefoot atop a rusted shipping container, surrounded by strays. The sky is overcast, her dress flutters like a broken flag, and yet her stance is composed, confident. She is not afraid of the wild—she commands it, or better yet, she walks with it, as one of its own.</p>
+        <p>This reverence for the feral is not simply romanticism. Ramour is careful to depict the dogs as real creatures, not metaphors. Their bodies are powerful, yes, but also heavy, awkward, dirty. Their teeth are sharp. Their presence is undeniable. Likewise, the women are not airbrushed or elevated—they are presented with textured skin, scars, tension in their hands and muscles in their jaws. This commitment to realness is part of what gives the collection its visceral impact. It refuses artifice in favor of reverence for what is raw.</p>
+        <p>For the Strange and Other resists categorization. It is at once an art collection, a meditation on female power, a critique of domestication, and a love letter to those who live at the edge of society’s expectations. It urges viewers to reconsider the line between human and animal, not to fear what is wild within, but to sit beside it, look it in the eye, and let it breathe.</p>
+        <p>Perhaps most significantly, Ramour’s work provides space for women who do not conform—to beauty, to control, to submission. In pairing them with dogs—creatures long burdened with metaphors of obedience and loyalty—he creates something radically different. These women are not obedient. These dogs are not tame. Together, they exist in their own terrain: unruled, unbroken, and unforgettable.</p>
+    </div>
+      <div class="carousel-container" data-carousel="1">
+        <div class="carousel-main">
+          <img src="images/collection1-1.jpg" alt="Main">
+        </div>
+        <div class="carousel-thumbnails">
+          <img src="FORTHESTRANGE.jpg" class="active">
+          <img src="FORSTRANGE.jpg">
+          <img src="STRANGEANDOTHER.jpg">
+        </div>
+      </div>
+    </div>
+
+    <!-- SNOUT STREET -->
+    <div class="collection-title">
+      SNOUT STREET <span class="collection-subtitle">NORA QUEEN</span>
+      <a href="https://en.wikipedia.org/wiki/Snout" class="view-website" target="_blank" rel="noopener noreferrer">VIEW ARTIST’S WEBSITE HERE</a>
+    </div>
+    <div class="collection-container">
+      <div class="carousel-container" data-carousel="2">
+        <div class="carousel-main">
+          <img src="images/collection2-1.jpg" alt="Main">
+        </div>
+        <div class="carousel-thumbnails">
+          <img src="SNOUTSTREET.png" class="active">
+          <img src="SNOUTS.jpg">
+        </div>
+      </div>
+      <div class="collection-text">
+        <strong>ABOUT THIS COLLECTION</strong><br><br>
+
+<p>In her latest body of work, <em>Snout Street</em>, artist and photographer Nora Queen takes us on a quiet but insistent urban journey—one punctuated by the uncanny presence of brass canine snouts embedded into the architecture of daily life. This project, both sculptural and photographic, is not merely a citywide installation, but a meditation on memory, scent, absence, and the traces left behind by bodies—especially those of animals that walk alongside us but remain half-forgotten in the margins.</p>
+<p>Queen, known for her interdisciplinary approach and her focus on human-animal relationships, has stepped beyond the gallery and into the streets with <em>Snout Street</em>, casting the snouts of real dogs in solid brass and placing them—delicately, sometimes mischievously—into urban infrastructure. Each snout is photographed in situ, and these photographic records comprise the official collection. The result is a series of still moments that document a kind of hidden world unfolding around us—a parallel city mapped not by footsteps, but by scent and animal presence.</p>
+<p>At first glance, the photographs may appear documentary, even subtle. A brass snout protruding from the edge of a park bench. Another pressed against the mortar of a brick wall. One snout, gleaming in golden patina, is fixed at the base of a lamppost, where it almost appears to sniff the rusted metal pole. But look closer and you begin to realize that these are more than curiosities. Queen is rewilding the city—not through flora, but through form, through suggestion, through the act of remembrance.</p>
+<p>Snouts, after all, are intimate anatomical tools. They are the site of scent, of navigation, of recognition. For dogs, the nose is a history reader, a boundary detector, a means of interpreting the world. Queen's decision to cast only the snout—without the eyes, ears, or mouth—renders these brass pieces anonymous yet familiar. They are fragments, like archeological findings, both present and ghostly. As they emerge from the concrete or lean from walls, they seem to be breathing in the street's collective memory.</p>
+<p>The act of photographing each placement is central to the project. Queen’s images are not merely documentation; they are acts of framing, of storytelling. Each photograph is composed with a studied stillness. Light plays across the metal surface, picking up scratches and fingerprints. The angle of the snout, its interaction with the textures around it—peeling paint, dirt, grime, old posters—creates a visual language of decay and persistence. The brass, always slightly warmer in tone than its environment, glows like a relic: part warning, part offering.</p>
+<p>Importantly, Queen does not stage these images for spectacle. There are no people in the frames, no performative acknowledgment of the installations. The snouts appear in alleys, beneath benches, under stairwells, alongside dumpsters—spaces dogs might explore freely, unnoticed. The decision to focus on overlooked locations is no accident. It echoes the way animals—especially strays, ferals, and urban wildlife—navigate the city: invisibly, between human attention.</p>
+<p>In accompanying notes, Queen writes about the concept of “olfactory haunting”—the idea that scent lingers where presence no longer exists. These brass snouts, fixed and cold, cannot smell. But their gesture—the way they push outward into the world—implies scent, implies memory. They become monuments to a way of knowing that humans have lost. And in doing so, they subtly critique the sensory hierarchy of modern urbanism, which privileges sight and sound but neglects the full-bodied experience of place.</p>
+<p>The photographs in <em>Snout Street</em> are sequenced with careful attention to rhythm. Some images are zoomed in, almost claustrophobic in their framing, while others pull back to reveal more of the street, situating the snouts within a broader narrative of urban motion. There is a pleasure in the viewer’s discovery: realizing that what first appeared to be a stain on the wall is, in fact, a glinting snout; that something halfway down the sidewalk is not a bolt but a muzzle turned toward the passing world.</p>
+<p>Conceptually, <em>Snout Street</em> operates at the intersection of sculpture, site-specific installation, and conceptual photography. But emotionally, it speaks to something more primal: the desire for connection across species, the acknowledgment of animal lives lived parallel to ours, and the invisible networks of experience that scent allows. In this way, Queen’s project might also be read as elegiac. These snouts are like urban fossils—quiet reminders of dogs who once inhabited a place, whose sense of the world was richer, more complex, and more honest than ours.</p>
+<p>And yet, there is a playfulness here too. Queen inserts these brass forms not only in forgotten corners but also in places of humor or contradiction: a snout peeking from a discarded glove box, another fixed onto a “NO PETS ALLOWED” sign. These moments of absurdity break up the solemnity of the concept and suggest that <em>Snout Street</em> is also an invitation to imagine—what if dogs designed our cities? What if scent trails were mapped like bus routes? What if we slowed down, leaned close to walls, and sniffed out our stories?</p>
+<p>In interviews, Queen has described <em>Snout Street</em> as an “olfactory atlas.” It is a city transformed through absence—not through erasure, but through suggestion. The brass snouts serve as placeholders for what once moved freely: not just animals, but the intimacy of nonverbal knowing. They are poetic interruptions, small golden disruptions to the clean lines of modern life.</p>
+<p>By anchoring these ephemeral ideas in physical form and then photographing them with both restraint and sensitivity, Nora Queen achieves something rare: she offers the viewer a new way of seeing without insisting upon it. She does not demand we recognize the animal in ourselves, but she provides the clues, the artifacts, the unspoken invitations. <em>Snout Street</em> is not a map—it’s a trail. One that meanders. One that asks us to follow the nose instead of the eye.</p>
+<p>Ultimately, <em>Snout Street</em> is an ode to the unnoticed. It is a visual meditation on touch, on trace, on the quiet lives that brush against ours without ceremony. Queen reminds us that cities are not just human ecosystems. They are shared, felt, sniffed-through, and layered with lives beyond our own. And if we pay attention—close, sensory, feral attention—we might just begin to remember how to walk with others, how to belong to more than just ourselves.</p>
+
+      </div>
+    </div>
+
+    <!-- THE THINGS UNDERGROUND -->
+    <div class="collection-title">
+    THE THINGS UNDERGROUND <span class="collection-subtitle">BEA BRONIV</span>
+      <a href="https://en.wikipedia.org/wiki/Cemetery" class="view-website" target="_blank" rel="noopener noreferrer">VIEW ARTIST’S WEBSITE HERE</a>
+    </div>
+    <div class="collection-container">
+      <div class="collection-text">
+         <strong>ABOUT THIS COLLECTION</strong><br><br>
+
+<p>Bea Broniv’s collection <em>Things Underground</em> is not merely a photographic series—it is a séance. In this lush and unsettling body of work, Broniv unearths something rarely articulated: the quiet intimacy shared between the living and the dead. With precision, tenderness, and a deep sense of narrative grace, the images in this collection imagine what romance might look like when stretched across the veil that divides life from death. The result is a visual poem—part love letter, part mourning ritual, part dream-state documentation of impossible affection.</p>
+<p>Throughout <em>Things Underground</em>, Broniv stages intimate encounters between living subjects and figures representing the dead. These figures are often skeletal or shrouded—sometimes visibly human, other times represented by decayed garments, shadowy forms, or bone. And yet, the images are not grotesque. There is no gore, no horror in the cinematic sense. Instead, each photograph balances on the edge of reverence. The dead are not threatening; they are remembered, adored, touched with trembling hands. Broniv’s living subjects do not flinch—they lean in.</p>
+<p>There is a deep sensuality at play. In one image, a young woman lies in bed, her eyes closed, her arm draped lovingly across the ribcage of a skeletal figure curled beside her. The linens are soft, the light low, and the feeling is not one of fear but of reunion. In another, a man and a ghostly silhouette sit close together on a park bench; his hand rests where her hand might be. The leaves fall around them. We cannot see her clearly, but we sense she is there. The suggestion of presence—the weight of someone long gone—is handled with such care that it evokes a deeply personal form of yearning.</p>
+<p>Broniv’s aesthetic is deliberate and layered. The color palette leans toward desaturated earth tones—sepia, bruised plum, dry leaf brown—echoing the tones of soil, bone, and aged fabric. Lighting is frequently natural, filtered through lace curtains or the canopy of trees, lending the photographs a sense of decay and devotion. In some images, candlelight is the sole source of illumination, casting long shadows across hollow eyes or illuminating half-turned faces. The settings vary—bedrooms, graveyards, empty theaters, overgrown gardens—but each carries a whisper of abandonment and the sacred.</p>
+<p>What makes <em>Things Underground</em> especially provocative is its commitment to the emotional truth of the relationships it portrays. These are not gothic fantasies for aesthetic’s sake. Broniv treats each connection between the living and the dead with a quiet sincerity that suggests the persistence of love even after breath has stopped. In her hands, the dead are not metaphors. They are characters. They have histories, presence, emotional pull. And their return—even in skeletal or spectral form—feels earned, even welcome.</p>
+<p>Broniv is careful never to anchor the viewer too tightly in any one narrative. Her work is filled with ambiguity. Is the skeletal figure real, or imagined? Is this a vision, or a visitation? Are we seeing memory? Grief? Necromancy? Longing? All of these interpretations may be true simultaneously. Broniv seems less interested in answering questions than in framing the emotional resonance of impossible moments—the kind we all revisit in the wake of loss, when memory feels like touch, and dreams feel like truth.</p>
+<p>Several photographs are staged like domestic snapshots: a dinner set for two, where one place is occupied by a slumped form in a suit of bones. A woman brushing the hair of a figure with no scalp. A bath shared between the living and the long-dead, mist rising around collarbones and crumbling clavicles. These compositions are rich with dissonance, but also tenderness. The uncanny becomes familiar. The living do not recoil. Instead, they reach out with trust. There is love here—a love that mourns but does not abandon.</p>
+<p>From a technical standpoint, Broniv’s work is masterful. Her composition choices create intimacy through proximity: close framing, shallow depth of field, careful control of blur. Textures—lace, dust, peeling paint, tulle—are richly layered, and her use of natural elements (rotting leaves, crumbling stone, water) invites the viewer into an environment that feels tactile and liminal. Each photograph is both rooted and untethered, grounded in real-world details but suggestive of a realm beyond physicality.</p>
+<p>In interviews, Broniv has spoken about her fascination with “emotional necromancy”—not the literal raising of the dead, but the way love, grief, and memory keep the departed close. <em>Things Underground</em> is the photographic expression of that idea. It is a collection that refuses to treat death as disappearance. Instead, it sees in death a kind of transformation—not of the person, but of the relationship. These images say: even if you are gone, I still sleep beside you. Even if your body is bone, my hand still knows its shape. The ache of absence becomes its own form of presence.</p>
+<p>There are echoes here of Romantic literature and 19th-century mourning culture—the hair jewelry, the posthumous portraits, the ghost stories whispered in dark parlors—but Broniv’s vision is entirely contemporary. She draws not just on aesthetics of loss, but on today’s emotional landscape: how we text the dead, revisit voicemails, build online altars, leave their toothbrushes untouched. <em>Things Underground</em> takes that modern mourning and renders it physically, lovingly visible.</p>
+<p>Perhaps the most remarkable achievement of this collection is its refusal to separate love from decay. Broniv suggests that romance is not limited to the realm of the breathing. That love may linger in ruins, may bloom underground. There is nothing sentimental in her work—only the raw, complicated truth that we never really stop loving the ones we’ve lost. And in that persistence, there is something almost holy.</p>
+<p><em>Things Underground</em> is not for those seeking closure. It does not tie grief up with a bow or offer finality. Instead, it offers companionship in the liminal space between past and present, between body and absence. It offers touch where there should be nothing. It invites the viewer to sit quietly with longing, and to honor it—not as a weakness, but as a kind of devotion. In Broniv’s world, even in death, we can still reach for each other. And maybe—just maybe—we are not reaching into nothing.</p>
+
+        Curabitur quis erat non purus iaculis euismod in et libero. Aenean gravida, eros in mattis fermentum, nibh eros faucibus magna, nec ultricies lacus nunc vel orci. Phasellus vel arcu est. In tristique magna sit amet justo congue imperdiet. Suspendisse eu urna odio. Integer et elit sit amet lectus eleifend tincidunt eget nec velit. Duis feugiat lectus et sapien sagittis, vitae viverra dolor scelerisque. Donec in odio fringilla, feugiat nibh id, hendrerit risus.
+      </div>
+      <div class="carousel-container" data-carousel="3">
+        <div class="carousel-main">
+          <img src="images/collection3-1.jpg" alt="Main">
+        </div>
+        <div class="carousel-thumbnails">
+          <img src="UNDERGROUND.jpg" class="active">
+          <img src="spiderlady.jpg">
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination">
+      Page <strong>1</strong> of <strong>2</strong>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-info">
+        <div class="footer-item">
+          <img src="PHONE.png" alt="Phone" class="icon-tiny" />
+          +1-100-200-3000
+        </div>
+        <div class="footer-item">
+          <img src="@.png" alt="Email" class="icon-tiny" />
+          ouremail@email.com
+        </div>
+        <div class="footer-item footer-icons">
+          <img src="INSTAGRAMICON.png" alt="Instagram" />
+          <img src="TIKTOK.png" alt="TikTok" />
+          <img src="LINKEDIN.png" alt="LinkedIn" />
+          <img src="FACEBOOK.png" alt="Facebook" />
+        </div>
+      </div>
+    </div>
+    <div class="footer-note">
+      © 2025, The Unconventional Photography Collective. All rights reserved.<br>
+      All photographs and content on this site are the intellectual property of The Unconventional Photography Collective.
+    </div>
+  </footer>
+
+  <script>
+    // --- C LOGIC ---
+    document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+      const mainImg = carousel.querySelector('.carousel-main img');
+      const thumbs = carousel.querySelectorAll('.carousel-thumbnails img');
+      let current = 0;
+      let autoPlay;
+
+      function showImage(index) {
+        thumbs.forEach((t, i) => t.classList.toggle('active', i === index));
+        mainImg.src = thumbs[index].src;
+        current = index;
+      }
+
+      thumbs.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => {
+          showImage(index);
+          clearInterval(autoPlay);
+        });
+      });
+
+      function startAuto() {
+        autoPlay = setInterval(() => {
+          current = (current + 1) % thumbs.length;
+          showImage(current);
+        }, 10000);
+      }
+
+      showImage(current);
+      startAuto();
+    });
+  </script>
+
+</body>
+</html>

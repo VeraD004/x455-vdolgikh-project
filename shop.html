@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop | The Unconventional Photography Collective</title>
+  <link rel="stylesheet" href="https://use.typekit.net/zur0syi.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'brother-1816', sans-serif;
+      font-weight: 100;
+      background-color: #fff;
+      color: #111;
+      margin-top: 25px;
+    }
+
+    .header-top, .footer-top, .footer-note {
+      font-family: 'brother-1816', sans-serif;
+      font-weight: 100;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    .logo {
+      width: 150px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      margin-left: 35px;
+    }
+
+    .logo img {
+      max-width: 250%;
+      max-height: 250%;
+      object-fit: contain;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      margin-right: 45px;
+    }
+
+    .icon, .icon.small {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .icon.small { margin-left: 10px; }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 5px;
+      background-color: white;
+    }
+
+    .search-container input {
+      border: none;
+      outline: none;
+      padding: 5px;
+      font-size: 14px;
+      width: 300px;
+    }
+
+    .vertical-divider {
+      width: 1.4px;
+      height: 50px;
+      background-color: #ccc;
+      margin: 0 15px;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 145px;
+      list-style: none;
+      padding: 20px 0;
+    }
+
+    .nav-bar li {
+      font-size: 18px;
+      color: black;
+    }
+
+    .nav-bar li a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-bar li.active {
+      color: gray;
+      border-bottom: 1px solid gray;
+    }
+
+    .shop-filter-bar {
+      max-width: 1000px;
+      margin: 30px auto 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: thinner;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+    }
+
+    .shop-filter-bar span.active {
+      font-weight: bold;
+    }
+
+    .shop-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    .shop-item {
+      background-color: #ddd;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #666;
+      cursor: pointer;
+    }\.shop-item img {
+        
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .shop-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+
+    .pagination {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 0px 0px 14px;
+      text-align: center;
+    }
+
+    .footer-top {
+      background-color: #eee;
+      padding: 10px;
+      color: black;
+    }
+
+    .footer-info {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 38px;
+    }
+
+    .footer-icons img {
+      width: 30px;
+    }
+
+    .footer-note {
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .icon-tiny { width: 20px; }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #lightbox .lightbox-content {
+      position: relative;
+      max-width: 800px;
+      width: 90%;
+      background: white;
+      padding: 30px;
+      color: black;
+      font-family: brother-1816, sans-serif;
+      display: flex;
+      gap: 0px;
+    }
+
+    .lightbox-image {
+      max-width: 700px;
+      height: auto;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .lightbox-details {
+      flex-grow: 
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .shop-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .shop-item:hover img {
+      transform: scale(1.08);
+      z-index: 1;
+    }
+    .lightbox-details button {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .lightbox-details button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header-top">
+    <div class="logo"><img src="logo.jpg" alt="Logo" /></div>
+    <div class="header-right">
+      <img class="icon" src="SHOPPINGFORWEBSITE.jpg" alt="Cart" />
+      <div class="vertical-divider"></div>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." />
+      </div>
+      <img class="icon small" src="SEARCHFORWEBSITE.jpg" alt="Search" />
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <ul class="nav-bar">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="collections.html">COLLECTIONS</a></li>
+    <li><a href="photographers.html">PHOTOGRAPHERS</a></li>
+    <li><a href="articles.html">ARTICLES</a></li>
+    <li><a href="submit-work.html">SUBMIT WORK</a></li>
+    <li class="active"><a href="shop.html">SHOP</a></li>
+  </ul>
+
+  <!-- Filter Bar -->
+  <div class="shop-filter-bar">
+    ORGANIZE BY ►
+    <span class="filter-option">Cluster</span>
+    <span class="filter-option">Current Collections</span>
+    <span class="filter-option">Previous Collections</span>
+    <span class="filter-option">Photographer</span>
+    <span class="filter-option">Most Purchased</span>
+  </div>
+
+  <!-- Shop Grid -->
+ <div class="shop-grid">
+  <div class="shop-item" onclick="openLightbox(1)">
+    <img src="catmeme.png" alt="Shop Item 1">
+  </div>
+  <div class="shop-item" onclick="openLightbox(2)">
+    <img src="catshroom.jpg" alt="Shop Item 2">
+  </div>
+  <div class="shop-item" onclick="openLightbox(3)">
+    <img src="leopardsnake.jpg" alt="Shop Item 3">
+  </div>
+  <div class="shop-item" onclick="openLightbox(4)">
+    <img src="lionlady.jpg" alt="Shop Item 4">
+  </div>
+  <div class="shop-item" onclick="openLightbox(5)">
+    <img src="plastic.jpg" alt="Shop Item 5">
+  </div>
+</div>
+
+  <!-- Pagination -->
+  <div class="pagination">Page <b>1</b> of 12 &gt;</div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox">
+    <div class="lightbox-content" style="display: flex; gap: 30px;">
+      <div class="lightbox-close" onclick="closeLightbox()">×</div>
+      <img id="lightbox-image" src="" alt="Artwork" class="lightbox-image" style="width: 50%; object-fit: cover;">
+      <div class="lightbox-details" style="width: 50%; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <h3 id="lightbox-title" style="font-size: 20px; font-weight: 400; margin-bottom: 6px;">Title</h3>
+          <p style="font-size: 12px; text-transform: uppercase; margin-bottom: 15px;"><strong>By:</strong> <span id="lightbox-author">Author</span></p>
+          <p id="lightbox-desc" style="font-style: italic; font-size: 14px; line-height: 1.5; margin-bottom: 15px;">“Quote or description here...”</p>
+          <p id="lightbox-quote-credit" style="font-style: italic; font-size: 13px; text-align: right;">– Author</p>
+        </div>
+        <div>
+          <p style="margin-top: 20px;"><strong>Select Available Sizes:</strong></p>
+          <ul id="lightbox-sizes" style="font-size: 14px; padding-left: 18px; margin-top: 10px; line-height: 1.6;"></ul>
+          <button style="margin-top: 20px; background: black; color: white; padding: 12px 0; border: none; font-size: 16px; width: 100%; cursor: pointer;">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-info">
+        <div class="footer-item">
+          <img src="PHONE.png" alt="Phone" class="icon-tiny" />
+          +1-100-200-3000
+        </div>
+        <div class="footer-item">
+          <img src="@.png" alt="Email" class="icon-tiny" />
+          ouremail@email.com
+        </div>
+        <div class="footer-item footer-icons">
+          <img src="INSTAGRAMICON.png" alt="Instagram" />
+          <img src="TIKTOK.png" alt="TikTok" />
+          <img src="LINKEDIN.png" alt="LinkedIn" />
+          <img src="FACEBOOK.png" alt="Facebook" />
+        </div>
+      </div>
+    </div>
+    <div class="footer-note">
+      © 2025, The Unconventional Photography Collective. All rights reserved.<br>
+      All photographs and content on this site are the intellectual property of The Unconventional Photography Collective.
+    </div>
+  </footer>
+
+  <script>
+    const imageData = {
+  1: {
+    image: "catmeme.png",
+    title: "Rory",
+    author: "Nya Dombrowski",
+    desc: "“A meditation on memes, memory, and the feline gaze.”",
+    sizes: [
+      'Small (5"x7"): $12.00',
+      'Medium (8"x10"): $18.00',
+      'Large (11"x14"): $25.00'
+    ]
+  },
+  2: {
+    image: "catshroom.jpg",
+    title: "Fungal Familiar",
+    author: "Jacob Ramour",
+    desc: "“This image bends the boundary between pet and parasite.”",
+    sizes: [
+      '6"x9": $14.00',
+      '9"x12": $22.00',
+      '12"x16": $30.00'
+    ]
+  },
+  3: {
+    image: "leopardsnake.jpg",
+    title: "The Spotted Coil",
+    author: "Afia Bell",
+    desc: "“A clash of textures, predator and predator.”",
+    sizes: [
+      'Small: $10.00',
+      'Standard: $20.00',
+      'Oversized: $35.00'
+    ]
+  },
+  4: {
+    image: "lionlady.jpg",
+    title: "With Beasts I Sleep",
+    author: "Phil A. Knight",
+    desc: "“The lions—symbols of raw strength and wild wisdom...”",
+    sizes: [
+      'Small (6"x8"): $10.00',
+      'Medium (9"x12"): $15.00',
+      'Large (12"x16"): $25.00',
+      'Custom (18" and over): $30 – $50'
+    ]
+  },
+  5: {
+    image: "plastic.jpg",
+    title: "Polymer Bloom",
+    author: "Nya Dombrowski",
+    desc: "“A bouquet not of nature but of consequence.”",
+    sizes: [
+      '5"x7": $11.00',
+      '8"x12": $19.00',
+      '16"x20": $28.00'
+    ]
+  }
+};
+
+    function openLightbox(id) {
+      const d = imageData[id] || imageData[1];
+      document.getElementById('lightbox-image').src = d.image;
+      document.getElementById('lightbox-title').textContent = d.title;
+      document.getElementById('lightbox-author').textContent = d.author;
+      document.getElementById('lightbox-desc').textContent = d.desc;
+      document.getElementById('lightbox-quote-credit').textContent = `– ${d.quoteCredit || d.author}`;
+      const ul = document.getElementById('lightbox-sizes');
+      ul.innerHTML = "";
+      d.sizes.forEach(s => {
+        const li = document.createElement("li");
+        li.textContent = s;
+        ul.appendChild(li);
+      });
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    document.querySelectorAll('.filter-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.filter-option').forEach(span => span.classList.remove('active'));
+        el.classList.add('active');
+
+        const grid = document.querySelector('.shop-grid');
+        const items = Array.from(grid.children);
+        const shuffled = shuffle(items);
+        shuffled.forEach(item => grid.appendChild(item));
+      });
+    });
+  </script>
+
+</body>
+</html>

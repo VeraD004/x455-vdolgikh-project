@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Work | The Unconventional Photography Collective</title>
+  <link rel="stylesheet" href="https://use.typekit.net/zur0syi.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'brother-1816', sans-serif;
+      font-weight: 100;
+      margin-top: 25px;
+    }
+
+    .header-top, .footer-top, .footer-note {
+      font-family: 'brother-1816', sans-serif;
+      font-weight: 100;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    .logo {
+      width: 150px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      margin-left: 35px;
+    }
+
+    .logo img {
+      max-width: 250%;
+      max-height: 250%;
+      object-fit: contain;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      margin-right: 45px;
+    }
+
+    .icon,
+    .icon.small {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .icon.small {
+      margin-left: 10px;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 5px;
+      background-color: white;
+    }
+
+    .search-container input {
+      border: none;
+      outline: none;
+      padding: 5px;
+      font-size: 14px;
+      width: 300px;
+    }
+
+    .vertical-divider {
+      width: 1.4px;
+      height: 50px;
+      background-color: #ccc;
+      margin: 0 15px;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 145px;
+      list-style: none;
+      padding: 20px 0;
+    }
+
+    .nav-bar li {
+      font-size: 18px;
+      color: black;
+    }
+
+    .nav-bar li a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-bar li.active {
+      color: gray;
+      border-bottom: 1px solid gray;
+    }
+
+    .submit-header {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+      padding: 0 20px;
+    }
+
+    .submit-header h2 {
+      position: relative;
+      font-size: 18px;
+      font-weight: 100;
+      color: #837e7e;
+      text-align: center;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .submit-header h2::before,
+    .submit-header h2::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #ccc;
+      position: absolute;
+      left: 0;
+    }
+
+    .submit-header h2::before {
+      top: -6px;
+    }
+
+    .submit-header h2::after {
+      bottom: -6px;
+    }
+
+    .submit-top {
+      display: flex;
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .submit-left {
+      width: 30%;
+      font-size: 28px;
+      line-height: 1.3;
+      font-style: italic;
+    }
+
+    .submit-left b {
+      display: block;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .submit-right {
+      width: 220%;
+      font-size: 14px;
+      line-height: 1.8;
+      padding-left: 30px;
+    }
+
+    .submit-right strong {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .table-container {
+      max-width: 1100px;
+      margin: 20px auto;
+      overflow-x: auto;
+      padding: 0 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #f9f9f9;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    th.sortable::after {
+      content: ' ▲▼';
+      font-size: 12px;
+      color: #777;
+      padding-left: 4px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f4f4f4;
+    }
+
+    .submit-button {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .submit-button button { 
+    background-color: black;
+    color: white;
+    font-family: 'brother-1816', sans-serif;
+    font-size: 16px;
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    }
+
+  .submit-button button:hover {
+  transform: scale(1.08);
+    }
+
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 0px 0px 14px;
+      text-align: center;
+    }
+
+    .footer-top {
+      background-color: #eee;
+      padding: 10px;
+      color: black;
+    }
+
+    .footer-info {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 38px;
+    }
+
+    .footer-icons img {
+      width: 30px;
+    }
+
+    .footer-note {
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+ .icon-tiny {
+  width: 20px;
+}
+
+.submit-button a.email-button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  font-family: 'brother-1816', sans-serif;
+  font-size: 16px;
+  padding: 12px 30px;
+  border: none;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.submit-button a.email-button:hover {
+  transform: scale(1.08);
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header-top">
+    <div class="logo"><img src="logo.jpg" alt="Logo" /></div>
+    <div class="header-right">
+      <img class="icon" src="SHOPPINGFORWEBSITE.jpg" alt="Cart" />
+      <div class="vertical-divider"></div>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." />
+      </div>
+      <img class="icon small" src="SEARCHFORWEBSITE.jpg" alt="Search" />
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <ul class="nav-bar">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="collections.html">COLLECTIONS</a></li>
+    <li><a href="photographers.html">PHOTOGRAPHERS</a></li>
+    <li><a href="articles.html">ARTICLES</a></li>
+    <li class="active"><a href="submit-work.html">SUBMIT WORK</a></li>
+    <li><a href="shop.html">SHOP</a></li>
+  </ul>
+
+  <!-- Submit Work Header -->
+  <div class="submit-header">
+    <h2>SUBMIT A PORTFOLIO – CURATE YOUR COLLECTION</h2>
+  </div>
+
+  <div class="submit-top">
+    <div class="submit-left">
+      <i>HOW TO</i><br>
+      <b>SUBMIT<br>YOUR<br>WORK</b>
+    </div>
+    <div class="submit-right">
+      We invite photographers of all experience levels to share their work through our open calls. Whether you're seeking a residency, mentorship, publication, or professional feedback, we offer multiple opportunities to support and celebrate your creative practice.
+      To get started, review the categories below and choose the opportunity that aligns best with your goals. Each listing includes specific submission requirements, deadlines, and details about what selected participants will receive.
+      Carefully read the guidelines for each opportunity and prepare your materials accordingly. All submissions must be made online by 11:59 PM (PST) on the stated deadline. Incomplete or late submissions will not be considered.
+      Have questions? Reach out to our team at ouremail@email.com. 
+<br>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+    <table id="submissionTable">
+      <thead>
+        <tr>
+          <th class="sortable" onclick="sortTable(0)">CLASS<br><small>SORT BY GREATEST PROFESSION LEVEL</small></th>
+          <th class="sortable" onclick="sortTable(1)">DEADLINES AND TIMELINE<br><small>SORT BY EARLIEST DEADLINE</small></th>
+          <th>SUBMISSION REQUIREMENTS</th>
+          <th>IF SELECTED</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>RESIDENCY APPLICATION</td>
+          <td>
+        ◊ Submissions Open: July 1, 2025<br>
+        ◊ Submission Deadline: August 15, 2025 at 11:59 PM (PST)<br>
+        ◊ Initial Review: August 16–22, 2025<br>
+        ◊ Finalist Notification: August 25, 2025
+          </td>
+
+          <td>◊ A personal statement (500–700 words) detailing your artistic mission
+      <p>◊ 10–15 photographs representing a cohesive body of work</p>
+      <p>◊ CV/resume and one letter of recommendation</p>
+      <p>◊ $25 non-refundable application fee</td>
+          <td>◊ If selected, you’ll receive...
+            ◊ 6-week funded residency at our Chicago studio
+      <p>◊ $2,000 artist stipend</p>
+      <p>◊ Featured solo exhibition in our gallery</p>
+      <p>◊ Full publication in our quarterly magazine</p>
+
+          </td>
+        </tr>
+        <tr>
+          <td>MASTER CLASS APPLICATION</td>
+    <td>
+      <p>◊ Submissions Open: July 3, 2025</p>
+      <p>◊ Submission Deadline: August 21, 2025 at 11:59 PM (PST)</p>
+      <p>◊ Initial Review: August 22–29, 2025</p>
+      <p>◊ Finalist Notification: August 30, 2025</p>
+    </td>
+
+
+          <td>◊ 5–8 work samples (JPEGs under 3MB each)
+      <p>◊ Short artist bio (max 150 words)</p>
+      <p>◊ Statement of interest: Why this class, why now? (300 words)</p>
+    </td>
+    <td>◊ Exclusive admission to a 4-day intensive led by acclaimed photographers
+      <p>◊ Portfolio review with industry professionals</p>
+      <p>◊ Publication of one photo in our community zine</p>
+      <p>◊ Networking dinner and printed certificate of completion</p>
+    </td>
+
+        </tr>
+        <tr>
+          <td>COMPETITION</td>
+          <td>
+      <p>◊ Submissions Open: July 10, 2025</p>
+      <p>◊ Submission Deadline: August 30, 2025 at 11:59 PM (PST)</p>
+      <p>◊ Initial Review: September 15–25, 2025</p>
+      <p>◊ Finalist Notification: September 26, 2025</p>
+    </td>
+
+          <td>◊ Submit one photo per category (max 3 categories)
+      <p>◊ Images must be original, unaltered, and high resolution</p>
+      <p>◊ Title and 50-word caption per image</p>
+      <p>◊ $10 entry fee per image</p>
+    </td>
+    <td>◊ $1,000 grand prize + spotlight interview on our site
+      <p>◊ Winning image featured on our homepage for 1 month</p>
+      <p>◊ Social media spotlight across all platforms</p>
+      <p>◊ Free entry into next year’s competition</p>
+    </td>
+
+        </tr>
+        <tr>
+          <td>PORTFOLIO REVIEW</td>
+          <td>
+      <p>◊ Submissions Open: July 20, 2025</p>
+      <p>◊ Submission Deadline: August 20, 2025 at 11:59 PM (PST)</p>
+      <p>◊ Initial Review: September 1–15, 2025</p>
+      <p>◊ Acceptance Notification: September 16, 2025</p>
+    </td>
+
+          <td>◊ Up to 20 images in a single PDF (max 10MB)
+      <p>◊ Artist statement (max 300 words)</p>
+      <p>◊ Optional: personal website or Instagram handle</p>
+      <p>◊ $15 review fee</p>
+    </td>
+      <td>◊ Written feedback from 3 professional reviewers
+      <p>◊ Invitation to virtual feedback session</p>
+      <p>◊ Inclusion in our Review Round-Up newsletter</p>
+      <p>◊ Eligible for fast-track submission in future calls</p>
+    </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+ <div class="submit-button">
+  <a href="mailto:ouremail@email.com?subject=Portfolio Submission Inquiry" class="email-button">
+    SUBMIT WORK HERE
+  </a>
+</div>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-info">
+        <div class="footer-item">
+          <img src="PHONE.png" alt="Phone" class="icon-tiny" />
+          +1-100-200-3000
+        </div>
+        <div class="footer-item">
+          <img src="@.png" alt="Email" class="icon-tiny" />
+          ouremail@email.com
+        </div>
+        <div class="footer-item footer-icons">
+          <img src="INSTAGRAMICON.png" alt="Instagram" />
+          <img src="TIKTOK.png" alt="TikTok" />
+          <img src="LINKEDIN.png" alt="LinkedIn" />
+          <img src="FACEBOOK.png" alt="Facebook" />
+        </div>
+      </div>
+    </div>
+    <div class="footer-note">
+      © 2025, The Unconventional Photography Collective. All rights reserved.<br>
+      All photographs and content on this site are the intellectual property of The Unconventional Photography Collective.
+    </div>
+  </footer>
+
+  <script>
+    function sortTable(columnIndex) {
+      const table = document.getElementById("submissionTable");
+      const rows = Array.from(table.rows).slice(1);
+      const asc = table.getAttribute("data-sort-dir") !== "asc";
+      rows.sort((a, b) => {
+        const aText = a.cells[columnIndex].innerText.toLowerCase();
+        const bText = b.cells[columnIndex].innerText.toLowerCase();
+        return asc ? aText.localeCompare(bText) : bText.localeCompare(aText);
+      });
+      rows.forEach(row => table.appendChild(row));
+      table.setAttribute("data-sort-dir", asc ? "asc" : "desc");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Photographers | The Unconventional Photography Collective</title>
+  <link rel="stylesheet" href="https://use.typekit.net/zur0syi.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'brother-1816', sans-serif;
+      font-weight: 100;
+      margin-top: 25px;
+    }
+
+    .header-top, .footer-top, .footer-note {
+      font-family: 'brother-1816', sans-serif;
+      font-weight: 100;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    .logo {
+      width: 150px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      margin-left: 35px;
+    }
+
+    .logo img {
+      max-width: 250%;
+      max-height: 250%;
+      object-fit: contain;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      margin-right: 45px;
+    }
+
+    .icon,
+    .icon.small {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .icon.small {
+      margin-left: 10px;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 5px;
+      background-color: white;
+    }
+
+    .search-container input {
+      border: none;
+      outline: none;
+      padding: 5px;
+      font-size: 14px;
+      font-family: 'brother-1816', sans-serif;
+      width: 300px;
+    }
+
+    .vertical-divider {
+      width: 1.4px;
+      height: 50px;
+      background-color: #ccc;
+      margin: 0 15px;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 145px;
+      list-style: none;
+      padding: 20px 0;
+      margin: 0;
+    }
+
+    .nav-bar li {
+      font-size: 18px;
+      cursor: pointer;
+      padding: 5px;
+      color: black;
+      font-weight: 300;
+    }
+
+    .nav-bar li.active {
+      color: gray;
+      border-bottom: 1px solid gray;
+    }
+
+    .nav-bar li a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .photographers-section {
+      max-width: 1100px;
+      margin: 23px auto;
+      padding: 0 20px;
+    }
+
+    .photographers-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #787373;
+      font-size: 10;
+    }
+
+    .photographer-block {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .photo-left, .photo-right {
+      flex: 1 1 48%;
+    }
+
+    .photographer-title {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .thumbnail-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 60%;
+      background-color: #ccc;
+      margin-bottom: 10px;
+    }
+
+    .read-more {
+      background: #eee;
+      padding: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .bio-box {
+      display: none;
+      border: 1px solid #aaa;
+      padding: 12px;
+      font-size: 15px;
+      background-color: #fff;
+    }
+
+    .arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .arrow.open {
+      transform: rotate(180deg);
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 0px 0px 14px;
+      text-align: center;
+    }
+
+    .footer-top {
+      background-color: #eee;
+      padding: 10px;
+      color: black;
+    }
+
+    .footer-info {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 38px;
+    }
+
+    .footer-icons img {
+      width: 30px;
+    }
+
+    .footer-note {
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .icon-tiny {
+      width: 20px;
+    }
+
+    .photographers-section h2 {
+      text-align: center;
+      margin-bottom: 20px 0;
+      position: relative;
+      font-weight: 100;
+      font-size: 18px;
+      line-height: 1.7;
+  
+      }
+
+.photographers-section h2::before,
+.photographers-section h2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  position: absolute;
+  left: 0;
+}
+
+.photographers-section h2::before {
+  top: -4px;
+}
+
+.photographers-section h2::after {
+  bottom: -4px;
+}
+.thumbnail-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.bio-box p {
+  text-indent: 2em;
+  margin-bottom: 1em;
+  line-height: 1.7;
+}
+
+
+.thumbnail-wrapper:hover img {
+  transform: scale(1.03);
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <div class="header-top">
+    <div class="logo">
+      <img src="logo.jpg" alt="Website's Logo" />
+    </div>
+    <div class="header-right">
+      <img class="icon" src="SHOPPINGFORWEBSITE.jpg" alt="Cart" />
+      <div class="vertical-divider"></div>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." />
+      </div>
+      <img class="icon small" src="SEARCHFORWEBSITE.jpg" alt="Search" />
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <ul class="nav-bar">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="collections.html">COLLECTIONS</a></li>
+      <li class="active"><a href="photographers.html">PHOTOGRAPHERS</a></li>
+      <li><a href="articles.html">ARTICLES</a></li>
+      <li><a href="submit-work.html">SUBMIT WORK</a></li>
+      <li><a href="shop.html">SHOP</a></li>
+    </ul>
+  </div>
+
+  <!-- Photographers -->
+  <div class="photographers-section">
+    <h2>MEET OUR PHOTOGRAPHERS!</h2>
+    
+    <!-- Repeat this block for each photographer -->
+    <div class="photographer-block">
+      <div class="photo-left">
+        <div class="photographer-title">NORA QUEEN</div>
+       <div class="thumbnail-wrapper">
+  <a href="https://www.youtube.com/watch?v=KycO0AA8sAY" target="_blank" rel="noopener noreferrer">
+    <img src="VIDEOTHUMBNAILONE.jpg" alt="Nora Queen">
+  </a>
+</div>
+        <div class="read-more" onclick="toggleBio(this)">
+          Read More About Nora Queen
+          <span class="arrow">&#9650;</span>
+        </div>
+        <div class="bio-box">
+<p>Nora Queen is a wildlife photographer whose lens captures more than just animals—it captures a quiet plea for humanity. Her work stands at the intersection of wilderness and human complexity, telling visual stories that bridge the lives of animals with the emotional and psychological intricacies of the human world. With every frame she composes, Nora invites viewers to pause, reflect, and consider not only the beauty of the natural world but the ways in which it reflects, contrasts, and critiques the human condition.</p>
+<p>Raised near the foothills of a national park, Nora found herself drawn to the stillness of nature at a young age. While others sought noise and movement, she found solace in waiting—sometimes for hours—for a single meaningful moment to unfold. That patience, coupled with a deeply empathetic soul, became the foundation of her practice. Her camera doesn’t simply document wildlife; it bears witness to the quiet dignity of life untouched by human cruelty, yet still shadowed by its consequences.</p>
+<p>Nora’s photographs are less about showcasing rare species or exotic settings, and more about evoking mood, symbolism, and emotional connection. A solitary fox moving through a snow-covered field. A mother elephant shielding her calf from a dust storm. A raven perched atop a rusted fence that separates wilderness from a growing industrial site. Each image operates as a metaphor, a mirror to the parts of humanity we often try to ignore: our loneliness, our longing, our barriers—both real and imagined.</p>
+<p>There is a poetic quality to Nora’s work that transforms her wildlife subjects into characters in a much larger, often invisible, human narrative. She believes that animals are not merely objects of admiration or documentation, but emissaries of something lost in ourselves—a purity of purpose, an honesty in instinct, and a way of being unencumbered by shame, violence, or ego. For Nora, each animal she photographs carries within it the potential to soften the hardened heart of the modern world.</p>
+<p>Central to Nora’s vision is a hope that the human world may one day become less complicated and less hateful. Her photographs, though rooted in the natural world, are a quiet resistance to the chaos and cruelty of modern human society. Rather than shouting her message, Nora whispers it through stillness and light. She uses the silent language of wildlife to question why humans—arguably the most intelligent species—have built systems defined by fear, inequality, and disconnection.</p>
+<p>Though her work is often serene, Nora is not naïve. She is deeply aware of the threats facing both wildlife and humanity: climate change, habitat destruction, violence, and societal division. But her photography resists despair. Instead, it insists on the power of beauty, empathy, and presence. In a world where people are overwhelmed by noise and conflict, Nora’s photographs offer a moment of reprieve—an invitation to breathe, to look closely, and to feel more deeply.</p>
+<p>Her most recent series, “Borderlines,” explores spaces where wilderness meets the edge of human development—abandoned highways taken over by moss, deer standing beneath streetlights, coyotes weaving through alleys. These images pose a quiet but potent question: What if the natural world is not disappearing, but adapting to survive us? And more urgently: What might we learn from their resilience?</p>
+<p>Nora Queen’s artistic mission is not to romanticize nature, but to honor it—and through that, to challenge humanity to become worthy of the world we inhabit. She sees in the animal kingdom not just beauty, but integrity. Not just survival, but wisdom. Her images are meditations on simplicity, vulnerability, and truth. They do not offer easy answers, but they do offer connection—and in that connection, the seed of hope.</p>
+<p>For Nora, wildlife photography is not just an artistic practice, but a moral one. It is her way of listening to what is rarely heard, of seeing what is often overlooked. It is a spiritual exercise, a political statement, and an act of healing all at once. Through her work, she asks us to look not just at animals, but at ourselves—and to wonder who we could become if we learned to live with less cruelty, more curiosity, and a greater reverence for life in all its forms.</p>
+<p>Ultimately, Nora Queen’s photography is a love letter—to the Earth, to its creatures, and to the fragile potential of a better human world. One frame at a time, she builds a visual argument for compassion. And in doing so, she dares to imagine that one day, the world we build will be as honest, as resilient, and as beautiful as the wild beings we share it with.</p>
+</p>
+        </div>
+      </div>
+
+      <div class="photo-right">
+        <div class="photographer-title">NINA ALEXANDER</div>
+        <div class="thumbnail-wrapper">
+  <a href="https://www.youtube.com/watch?v=xvyz6ZL8tTI" target="_blank" rel="noopener noreferrer">
+    <img src="VIDEO THUMBNAIL FOUR.jpg" alt="Nina Alexander">
+  </a>
+</div>
+        <div class="read-more" onclick="toggleBio(this)">
+          Read More About Nina Alexander
+          <span class="arrow">&#9650;</span>
+        </div>
+        <div class="bio-box">
+<p>Nina Alexander (b. 1985) is a contemporary Native American photographer of mixed Choctaw and Cherokee heritage, whose evocative imagery weaves together themes of identity, nature, resilience, and cultural memory. Raised in southeastern Oklahoma on the ancestral Choctaw reservation, Nina grew up immersed in oral storytelling, crafts, and the rhythms of ceremony—elements that still inform her visual sensibility today.</p>
+<p>Nina was born in Durant, Oklahoma, in March 1985, to a Choctaw father and Cherokee mother. From a young age, she was steeped in the traditions of both nations: summer gatherings, tribal schooling, basket weaving, language classes, and visits to her grandmother’s homestead out in the rolling wooded hills. Her grandmother, Shyla Alexander, a storied Choctaw artisan and elder, taught Nina the ancient rhythms of beadwork and storytelling, encouraging her to observe closely and gather stories from the land.</p>
+<p>Even as a child, Nina carried a camera—initially a disposable one for family gatherings, later a thrifted point‑and‑shoot. She began photographing everyday scenes: porches, flowing creeks, kin cooking spayi‑digi (a traditional dish) over wood fires, and the shafts of light in her grandmother’s old clapboard house. She recognized even then that photography could capture both the ordinary and the sacred.</p>
+<p>After graduating from Durant High School in 2003, Nina earned a scholarship to University of Tulsa, where she majored in Visual Arts and minored in Indigenous Studies. During this time, she honed her craft in digital and film photography, while deepening her understanding of Native American history, displacement, sovereignty, and cultural reclamation.</p>
+<p>She spent her summers between academic semesters working at the university’s photography archive, digitizing historical images of early 20th‑century tribal life in Oklahoma. That experience instilled in her a belief that images are not just visuals but vessels of memory and agency.</p>
+<p>In 2007, she studied abroad for a semester at the University of Western Australia, engaging with Aboriginal artists. She recorded oral histories with Indigenous elders and experimented with merging landscape photography with portraits—an approach she would later refine in her own tribal landscape series.</p>
+<p>Soon after college, Nina returned to Oklahoma and began teaching photography workshops in tribal schools. Her early exhibitions—such as “Under the Cedar Trees” (2009) in Norman, OK, and “River Visions” (2011) in Tulsa—presented intimate portraits of Choctaw and Cherokee elders against natural backdrops: riverbanks, forests, ceremonial grounds. These works juxtaposed stately dignity with the vulnerability of weathered hands, braided hair, and time‑worn features, conveying both continuity and fragility.</p>
+<p>Her breakthrough came in 2014 with “Echoes of Light,” a traveling exhibition across the American Southwest. In this series, she combined large-format film prints with textured overlays of ledger art, Choctaw knotwork patterns, and Cherokee syllabary. By blending ancestral visual forms with contemporary photography, Nina created haunting compositions that both reclaimed history and asserted a living presence.</p>
+<p>Nina’s images often feature natural light, especially at dawn or dusk, emphasizing warm golden tones, long shadows, and dust‑laden air. She favors a medium-format film camera, developing her black-and-white and color negatives herself in a darkroom she built in her Tulsa studio. The tactile process of printing—layering toners, emulsions, and hand-applied archival inks—echoes traditional textile arts, forging a link between photographic practice and intergenerational craft.</p>
+<p>Recurring themes in her work include:</p>
+
+<ul>
+  <p><li>Water and waterways: rivers, creeks, springs, ponds—often reflecting the sky, suggesting both clarity and depth.</li> </p>
+  <p><li>Hands and tools: basketters, beadworkers, drummers, tending gardens—symbolizing cultural continuity through labor and craft.</li> </p>
+  <p><li>Ceremony and residue: empty sweat-lodge interiors, footprints in sand left behind shortly after ritual, ash‑scattered spoon rests.</li> </p>
+  <p><li>Borrowed landscapes: framing elders indoors but through a window that shows ancestral cliffs or woodlands beyond—blurring interior/exterior, past/present.</li> </p>
+</ul>
+
+<p><em>“Tracing the River”</em> (2015–2016): A multi‑image project along the Red River, exploring ties between land, water rights, and tribal sovereignty. Nina photographed places of forced removal, ancestral camps, and ceremonial fishing sites, interweaving archival maps with present-day photos. The exhibit ran at Chickasaw Nation Museum and in New York at Photoville in 2016.</p>
+<p><em>“Wake of the Drum”</em> (2018): Portraits of sixteen Master Drummers from Choctaw, Cherokee, and Muscogee nations taken in outdoor sacred circles at various drum grounds. These images captured mid-beat motion, dust raised by dancing, and spontaneous expressions of joy or concentration.</p>
+<p><em>“Ancestor Dialogues”</em> (2021): A deeply personal series combining posed black-and-white portraits of her grandparents and parents with their own oral histories, handwritten notes beside the prints. The captions share stories of boarding-school survival, hidden language lessons, grassroots activism, and reclamation.</p>
+<p>Nina’s evocative blend of ancestral motifs and contemporary portraiture garnered critical acclaim. In 2016, she received the Native Futures Fellowship from the Center for Cultural Preservation, awarded to Indigenous artists working in cross-disciplinary practice. In 2019, she was shortlisted for the Susan Mead Award for excellence in visual narrative art.</p>
+<p>Featured widely in art publications, her work has appeared in <em>LensCulture</em>, <em>Native Arts & Cultures Foundation Magazine</em>, <em>Art in America</em>, and <em>National Geographic</em>. Critics often describe her work as “a poetic meditation on memory and place,” praising how she brings "contemporary Indigenous identity into a vivid photographic presence."</p>
+<p>Nina continues to give workshops across tribal nations—teaching youth how photography can be a form of self-expression, cultural documentation, and assertion. She collaborates with the First Peoples Development Center in Tulsa to run a biennial summer mentorship program for Indigenous high-school students, pairing them with Indigenous photographers and archivists.</p>
+<p>She also maintains a traveling pop‑up darkroom, which she sets up in remote tribal towns and reservations, offering free film development and archival scanning services to Indigenous communities. This initiative, “Film Roots,” invites elders to submit historical photos and creates video-oral-history accompaniments.</p>
+<p>Nina lives in Tulsa with her partner, Lilah, a Cherokee‑Choctaw herbalist and educator. They share a small homestead near the hills, growing native plants like elderberry, sumac, and pawpaw, which Nina sometimes includes in her still‑life compositions. On weekends they gather with extended family for seasonal celebrations, language circles, and communal meals.</p>
+<p>She speaks Choctaw and is learning Cherokee fluently; her studio walls are hung with family photographs, fiber‑arts pieces, and framed syllabary inscriptions. She keeps a library of Indigenous poetry and essays—recent favorites include <em>An Indigenous Peoples’ History of the United States</em> by Roxanne Dunbar‑Ortiz, and <em>Braiding Sweetgrass</em> by Robin Wall Kimmerer—which inform her artistic framing of reciprocity, land‑based knowledge, and ecological kinship.</p>
+<p>Nina is currently editing a book titled <em>River Stories: Water, Identity, Resistance</em>, which pairs her photography with oral histories of tribal fisherfolk, water protectors, and elders along the waterways of Oklahoma and Texas. She plans to contribute proceeds to fund Indigenous water rights legal programs.</p>
+<p>She is also being invited to international exhibitions: one is a group show in Berlin titled “Indigenous Photographies of Resistance” (2026), and she is preparing a solo exhibition in Vancouver in early 2027 exploring tribal land reclamation through photographic diptychs.</p>
+<p>For Nina Alexander, photography is less about capturing a moment than about holding and transmitting stories—stories of belonging, endurance, and ancestral memory. Her aim is to create work that Indigenous and non‑Indigenous audiences feel viscerally, not through exoticization but through shared humanity. She believes her images can serve as modern ledger‑books—visual records that resist erasure and reclaim space.</p>
+<p>Her artistic philosophy is rooted in reciprocity: every subject she photographs—whether an elder, a drumming circle, or a shoreline—is treated as a collaborator. She insists on respectful consent, shares prints with the subjects and their families, and often returns to photograph places again across seasons, allowing the landscape itself to reveal changes, continuity, and resilience.</p>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 2nd Row -->
+<div class="photographer-block">
+  <div class="photo-left">
+    <div class="photographer-title">DANIEL MATSUMOTO</div>
+   <div class="thumbnail-wrapper">
+  <a href="https://www.youtube.com/watch?v=GiftA8gDMAA&list=PLeCPQtbuJaPv35nn-S5f-FOmTYhK4g_BW&index=1" target="_blank" rel="noopener noreferrer">
+    <img src="THUMBNAILFIVE.jpg" alt="Daniel Matsumoto">
+  </a>
+</div>
+    <div class="read-more" onclick="toggleBio(this)">
+      Read More About Daniel Matsumoto
+      <span class="arrow">&#9650;</span>
+    </div>
+    <div class="bio-box">
+<p> Daniel Matsumoto (b. 1988) is a contemporary Japanese photographer known for his introspective, cinematic portraits and atmospheric urban landscapes. Blending Japanese minimalism with moody, modern storytelling, his work captures fleeting human moments in hyper-detailed environments—alleyways bathed in lamplight, window reflections in early rain, and the silence of cities before dawn. His lens focuses not on spectacle, but on the quiet poetics of modern life.</p>
+<p>Though fictional, Matsumoto’s body of work reflects themes of identity, solitude, memory, and the emotional weight of architecture—making him a powerful figure in imagined visual culture.</p>
+<p>Daniel Matsumoto was born in Yokohama, Japan, in 1988 to a Japanese mother and a British-Jewish father who had moved to Japan in the early 1980s to work as an English literature professor. Growing up in a bilingual, bicultural household, Daniel was acutely aware of how language, culture, and perception shape identity. He often described his upbringing as “hovering at the edge of two mirrors—never seeing a full reflection in either.”</p>
+<p>His first encounter with photography came at age ten, when he found his father’s old Pentax film camera in the back of a closet. He was mesmerized by the physicality of the tool, the smell of the leather case, and the weight of the lens in his small hands. His mother, an ikebana instructor and amateur painter, encouraged him to document nature and stillness. From then on, Daniel began walking the streets of Yokohama alone, photographing telephone wires, rusted vending machines, quiet train platforms, and elderly couples sitting in silence.</p>
+<p>Daniel studied Visual Communication Design at Musashino Art University in Tokyo, where he developed a fascination with urban planning, Japanese architecture, and the emotional geometry of public spaces. His senior thesis, <em>“Void Structures”</em>, examined the psychological effect of Tokyo’s hidden alleys, overpasses, stairwells, and empty train cars. These early photographs were black-and-white studies in texture and tone, heavily influenced by Hiroshi Sugimoto and Daido Moriyama.</p>
+<p>But unlike his predecessors, Daniel began introducing cinematic elements into his compositions: low lighting, partially obscured subjects, reflections from neon signs. He was deeply inspired by Wong Kar-wai’s films, Tarkovsky’s still frames, and American street photographers like Saul Leiter and Todd Hido. After graduation, he briefly moved to Berlin, where he explored notions of post-war architecture and displacement, further informing his vision.</p>
+<p>Daniel Matsumoto is best known for his emotionally resonant images, which combine clean composition with dreamlike ambiance. His photographs rarely depict moments of action; rather, they hold time still—focusing on anticipation, reflection, or aftermath. Some of his core stylistic traits include:</p>
+<p>His recurring themes include isolation in modern society, impermanence, nostalgia, and the architecture of memory. He once said in an interview (entirely fictional):</p>
+<p><em>“I don’t take pictures of what’s happening. I take pictures of what it feels like before something happens, or long after it’s over.”</em></p>
+<p><em>“City Remembers”</em> (2014)  
+Daniel’s debut solo exhibition in Tokyo explored urban decay and the memory embedded in walls, signage, and abandoned rooftops. Shot entirely at night in long exposures, the series was praised for turning empty locations into emotional time capsules.</p>
+<p><em>“Unspoken Light”</em> (2017)  
+A haunting portrait series capturing strangers in public transit—subways, buses, and ferry terminals—shot discreetly over three years. Exhibited in London and Osaka, it was noted for its empathy and anonymity, and sparked discussions around privacy in public spaces.</p>
+<p><em>“Rain as Language”</em> (2019)  
+A color project centered entirely around Tokyo in the rain. Water served as a narrative device—reflecting headlights, dripping through gutters, pooling in parks. The project became a photobook that sold out its first printing in three weeks.</p>
+<p><em>“The Room Between Us”</em> (2022)  
+A pandemic-era project capturing the interiors of small Japanese apartments from the street, with subjects visible only through windows. The series portrayed emotional distance, routine, and loneliness—striking a nerve internationally.</p>
+<p>Despite being fictional, Daniel Matsumoto has been described in this constructed narrative as “a quiet master of ambient storytelling.” His work has appeared in mock magazines such as:</p>
+<p>In 2023, he was awarded the (fictional) Kazuya Hirota Emerging Artist Prize, honoring contemporary photographers who reimagine Japanese visual culture through innovative framing.</p>
+<p>Daniel teaches part-time at a fictional photography school in Kyoto—The Institute of Ambient Media and Light—where he leads workshops on “visual silence,” emotional pacing in photo essays, and nocturnal photography. His mentorship style is rooted in subtle observation: guiding students not toward perfection, but toward presence.</p>
+<p>He also runs a small digital zine called <em>“Kaze”</em> (meaning “wind”), where emerging Japanese artists can publish short photo narratives around themes of absence, longing, or memory.</p>
+<p>Daniel lives alone in a quiet part of Shimokitazawa, Tokyo, where he often takes late-night walks with his medium-format camera. His apartment is said to be filled with notebooks, analog photo prints, dried flowers, and shelves of silent film DVDs.</p>
+<p>He avoids social media almost entirely, save for a small online archive curated by a fictional assistant. He believes images are meant to be “breathed in slowly, not consumed through flickering thumbnails.”</p>
+<p>Daniel believes that photography is “a language of restraint.” In an (imaginary) lecture at the Kyoto Photo Biennale, he said:</p>
+<p><em>“We do not always need to fill space. Often, the most powerful images are the ones that leave room—for memory, for loss, for imagination. I’m not photographing answers. I’m photographing openings.”</em></p>
+
+    </div>
+  </div>
+
+  <div class="photo-right">
+    <div class="photographer-title">AFIA BELL</div>
+    <div class="thumbnail-wrapper">
+  <a href="https://www.youtube.com/watch?v=WUNTi9fXrls&list=PLeCPQtbuJaPv35nn-S5f-FOmTYhK4g_BW&index=7" target="_blank" rel="noopener noreferrer">
+    <img src="VIDEOTHUMBNAILSIX.jpg" alt="Afia Bell">
+  </a>
+</div>
+    <div class="read-more" onclick="toggleBio(this)">
+      Read More About Afia Bell
+      <span class="arrow">&#9650;</span>
+    </div>
+    <div class="bio-box">
+<p> Afia Bell( b. 1985) is an emerging visual storyteller whose work is rooted in photography of dense jungles and tropical ecosystems. Born in Accra, Ghana, she developed a deep connection to the forested regions of West Africa—capturing lush biodiversity, endangered wildlife, Indigenous community life, and the mechanics of climate change with both precision and poetic vision. Afia’s images reflect a reverence for living ecosystems and a commitment to community-centered conservation narratives.</p>
+<p>Afia was born on June 12, 1985, in Accra, to a Ghanaian botanist mother and a British ecologist father. As a child, she spent school holidays exploring Reserve Forests and coastal mangrove swamps, watching her mother collect plant specimens and her father document forest health. At age 11, she got her first camera—a simple point‑and‑shoot—to document insect life in her grandparents’ cocoa farm.</p>
+<p>Spending summers in Ashanti forest communities, she learned local names for species and heard oral traditions about sacred groves, rain ceremonies, and forest spirits. The rich tapestry of plant use, myth, and ecosystem rhythms shaped her lifelong visual sensibility: she viewed the jungle as a story, not just scenery.</p>
+<p>After finishing secondary school in Accra, Afia earned a scholarship to study Environmental Photography and Ethnobotany at University College London, graduating in 2007. There she learned both field documentation methods and creative narrative techniques, focusing on low-impact photography in fragile settings.</p>
+<p>Afia also earned certifications in jungle survival, wilderness first aid, and drone aerial photography. A field internship with a rainforest conservation NGO in Guyana exposed her to indigenous communities in the Rupununi savannah and Kanuku Mountains, where she began photographing parrot roosts, jaguars, and medicinal plant harvesters.</p>
+<p>Over the last decade, Afia has traveled and worked across multiple tropical regions: West African rainforests in Ghana and the Congo Basin; Amazon tributaries in Brazil and Peru; mangrove estuaries in Indonesia; and coastal rainforest zones in Papua New Guinea.</p>
+<p>Her major body of work includes:</p>
+
+<ul>
+  </p><li><em>“Echoes of the Canopy”</em> (2013–2015): A black-and-white and infrared series capturing the vertical architecture of rainforest—towering emergent trees, understory plants, lianas, and shifting light as it falls through the layers. Exhibited at GreenLens Gallery, London in 2016.</li> </p>
+  </p><li><em>“Heartbeat of the Forest”</em> (2016–2018): Portraits of forest-dependent communities—Matsés gatherers, Congo Basin Pygmy hunter-gatherers, Orang Rimba in Sumatra—often photographed alongside the plants or animals they manage. Each portrait includes handwritten captions of local plant uses and oral-history excerpts.</li> </p>
+  </p><li><em>“Last River Runs Wild”</em> (2019–2021): A photo‑essay documenting the lives of communities along largely untouched river courses in Guyana and Suriname threatened by gold mining and deforestation. The series includes riverine landscapes, sediment-laden water, dredging equipment, and community protests.</li> </p>
+  </p><li><em>“Endangered Auroras”</em> (2023–): A striking nocturnal study of bioluminescent fungi, fireflies, and rare glimmers of phosphorescent life in jungles around Ghana and Malaysia. Combining long‑exposure techniques and close macro work, Afia created dream‑like compositions that suggest memory, decay, and fleeting beauty.</li> </p>
+</ul>
+
+<p>Afia’s photographic approach is rooted in ecological understanding and a profound patience:</p>
+
+<ul>
+   </p> <li><strong>Manual settings:</strong> She favors medium-format digital backs or 6×7 film cameras, using wide apertures (ƒ/2.8–ƒ/5), extended exposures, and natural-filtration techniques to isolate fog, mist, and light shafts.</li> </p>
+   </p> <li><strong>Non-invasive practice:</strong> Using long focal-length lenses to document wildlife from a distance—she aims to disturb as little as possible.</li> </p>
+  </p>  <li><strong>Story layering:</strong> In her gallery prints, she often combines photographic imagery with semi-transparent botanical sketches and ethnographic notes—visual collage that merges science and art.</li> </p>
+  </p> <li><strong>Color palettes:</strong> She embraces the saturation of green, punctuated by vibrant flora, insects, fish, and ceremonial textiles—communicating depth, moisture, and life.</li> </p>
+</ul>
+
+<p>Afia’s photographic enterprise is intertwined with activism and education:</p>
+
+<ul>
+  </p><li>She partners with climate NGOs such as Rainforest Futures Collective and Green Canopy Alliance, donating proceeds from exhibitions to local reforestation initiatives.</li> </p>
+  </p><li>In Ghana, she leads a traveling mobile “Forest School” that teaches youth in rural communities how to use photography to document environmental change and preserve Indigenous botanical knowledge.</li> </p>
+  </p><li>She organizes annual youth photo contests in Ghana, encouraging students to document local flora and fauna, with winning entries exhibited in community centers and online galleries.</li> </p>
+</ul>
+
+<p>Afia’s fictional oratory includes praise in imagined conservation forums and art magazines:</p>
+
+<ul>
+  </p><li>In 2018, she received the (fictional) EcoLens Conservation Award for <em>“Heartbeat of the Forest.”</em></li> </p>
+  </p><li>In 2022, she was granted a fellowship from the (fabricated) Wild Earth Narratives Fund, supporting her long-term study of West African river systems.</li> </p>
+  </p><li>In 2024, her book <em>Jungle Luminescence</em>, featuring her “Endangered Auroras” series, was shortlisted for the (fictional) Global Photo Narratives Prize.</li></p>
+</ul>
+
+<p>Her photography has been featured in mock publications like <em>Planet Lens</em>, <em>Wild Art Journal</em>, and <em>Eco‑Visual Review</em>.</p>
+<p>Afia often splits her time between Accra, forest outposts in Akan regions, and residencies in Manaus (Brazil) or Kinshasa (DRC). She lives out of a small field camp when on assignment: a solar-powered tent, rain shelter, and a foldable darkroom.</p>
+<p>She credits her aesthetic vision to:</p>
+
+<ul>
+  </p><li>Her mother’s love of botanical illustration and plant taxonomy.</li> </p>
+  </p><li>Traditional Forest Elders who spoke of trees as ancestors.</li> </p>
+  </p><li>Macro photographers such as Cristóbal Hara—whose close-up focus inspires her insect portraits.</li> </p>
+  </p><li>And classic nature cinematographers like Bernard Weber, with their reverence for ecological scale.</li> </p>
+</ul>
+
+<p>Afia calls preferred gear “functional and silent”: her main kit includes a medium-format digital body, a macro 100 mm ƒ/2.8 lens, a telephoto 300 mm lens, portable solar-powered flash, and a RAW sensor trap camera for wildlife movement.</p>
+
+<ul>
+</p> <li>A documentary exhibit titled <em>“Whispers Beneath the Axes,”</em> collaborating with forest activists to show the impact of industrial logging in West Africa.</li> </p>
+</p> <li>A photobook named <em>Child of the Forest: Myths & Seeds</em>, which blends jungle mythology, portraits of seed‑keepers, and plant‑life photography in poetic sequences.</li> </p>
+</p> <li>A VR-based installation project called <em>“Forest Echoes,”</em> bringing immersive 360‑degree jungle soundscapes and photo series to museum audiences in Paris, Nairobi, and Singapore.</li> </p>
+
+<p>Afia believes that photography should be reciprocal, not extractive. She says (fictionally):</p>
+<p><em>“The forest isn’t a backdrop. It’s a collaborator—and often a teacher. My goal is to hold its voice, not claim it.”</em></p>
+<p>She frames her images as rituals of recording and returning: images are shared with communities first, and prints given back to elders wanting physical memory to preserve alongside oral stories. She sees photography as a tool of stewardship—raising awareness about ecological fragility not through dramatic destruction shots but through the subtle rhythm of everyday forest life.</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- 3rd Row -->
+<div class="photographer-block">
+  <div class="photo-left">
+    <div class="photographer-title">JACOB RAMOUR</div>
+   <div class="thumbnail-wrapper">
+  <a href="https://www.youtube.com/watch?v=LIcHz95zX3g" target="_blank" rel="noopener noreferrer">
+    <img src="VIDEO THUMBNAIL SEVEN.jpg" alt="Jacob Ramour">
+  </a>
+</div>
+    <div class="read-more" onclick="toggleBio(this)">
+      Read More About Jacob Ramour
+      <span class="arrow">&#9650;</span>
+    </div>
+    <div class="bio-box">
+<p>Jacob Ramour (b. 1999) is a queer photographer and visual essayist based in Chicago, whose work captures the emotional landscape of LGBTQ+ life in the city’s neighborhoods—from underground dance floors to protest marches, from corner-store confessions to stolen kisses under neon lights. Known for his raw, intimate, and unflinching style, Ramour uses photography as both witness and memoir—shining light on the resilience, vulnerability, and everyday beauty of queer communities, especially Black and Brown LGBTQ+ individuals navigating urban spaces.</p>
+<p>Through a deeply personal and political lens, Jacob's work explores the intersection of identity, place, and collective memory. His photographs have been described as <em>"visual love letters to queer Chicago—gritty, glowing, and fiercely alive."</em></p>
+<p>Jacob Ramour was born in 1999 on Chicago’s West Side, in the neighborhood of East Garfield Park, to a Haitian-American mother and a white father who worked in city transit. Raised in a small apartment with his mother and older sister, Jacob’s childhood was marked by both economic hardship and a constant creative impulse—sketchbooks filled with faces, journals filled with lyrics, and hours spent observing the neighborhood through his bedroom window.</p>
+<p>He realized he was gay by the time he was 12 but remained closeted throughout most of his teens. “The camera became my voice before I found my own,” he later said in an interview. “It let me ask questions I couldn’t yet say out loud.”</p>
+<p>Jacob got his first camera at 15—a used Nikon film body from a pawn shop on Madison Street. He began photographing the people in his community: corner kids with boxed haircuts, women with grocery bags in the snow, lovers holding hands after dark. His earliest series, <em>Sidewalk Saints</em>, included portraits of his friends wearing drag in alleyways, juxtaposed against church steeples and CTA tracks—framing queerness as both sacred and defiant.</p>
+<p>Jacob earned a scholarship to attend The School of the Art Institute of Chicago (SAIC), where he studied photography and gender studies. There, he found community and language for the intersections of race, queerness, and place—alongside mentors who encouraged him to treat the city itself as a collaborator.</p>
+<p>While at SAIC, he launched his first major body of work:</p>
+
+<ul>
+  <li>“Boys in the Backroom” (2010–2012): A documentary project shot inside DIY queer spaces on the South and West Sides—house parties, basement ballrooms, barbershops, and poetry slams. These images captured the joy, exhaustion, flirtation, and protest that defined the queer youth scene at the time. The series was later exhibited at Links Hall and archived by the Leather Archives & Museum.</li>
+</ul>
+
+<p>Jacob Ramour’s photography is known for its emotional honesty and streetwise lyricism. His recurring themes include:</p>
+
+<ul>
+  <p><li> Visibility and vulnerability:Often shooting at twilight or under low, colored lighting, Ramour’s portraits reveal the delicate tension between being seen and being safe.</li> </p>
+  <p> <li> Queer love and chosen family: From ballroom houses to porch hangs, he documents kinship structures rooted in survival and tenderness.</li> </p>
+  <p><li> Urban decay and resilience: Broken glass, crumbling stairwells, rain-slicked bricks—Jacob’s backdrops speak to both danger and intimacy in public space.</li> </p>
+  <p><li> Silent protest: Many of his images are acts of resistance without words—queer bodies simply existing, unapologetically, in spaces that were not made for them.</li> </p>
+</ul>
+
+<p>He shoots primarily in 35mm and medium-format film, favoring the tactile presence of grain, shadow, and imperfection. He is especially drawn to color film for skin tones in low-light environments, and often hand-develops his negatives in his West Side studio.</p>
+
+<ul>
+  <p><li>“Halsted Isn’t Home” (2015–2017): This series challenged the narrative that Chicago’s LGBTQ+ identity begins and ends in Boystown. Jacob photographed queer elders in Bronzeville, Black trans activists in Englewood, and Latinx drag performers in Little Village. The project was exhibited at the Museum of Contemporary Photography, sparking conversations around race, displacement, and visibility in queer spaces.</li> </p>
+  <p> <li>“Neon Baptism” (2018): A moody, color-drenched portrait series exploring queer intimacy under artificial light—bathrooms, cars, motel rooms, stairwells. Every frame glows with soft pinks, electric greens, and flickering blues. The exhibit included personal audio interviews with the subjects about first kisses, heartbreaks, and chosen names.</li> </p>
+  <p><li>“March / Dance / Cry” (2020): A black-and-white street photo essay taken during the summer protests following the murder of George Floyd. Jacob focused on queer-led protest movements in Chicago—capturing dance circles, mobile drag shows, homemade signs, and teardrops on makeup. Published as a limited-run book with proceeds benefiting Brave Space Alliance.</li> </p>
+ <p><li>“Porchlight Diaries” (2023–ongoing): A return to softness: portraits of queer couples and roommates taken on their porches during and after the pandemic. Each subject is photographed seated, framed by plants, chairs, and domestic objects—a quiet study of rest, presence, and everyday beauty.</li> </p>
+</ul>
+
+<p>Jacob views photography as both art and intervention. In addition to documenting protest movements, he regularly partners with Chicago LGBTQ+ organizations, including:</p>
+
+<ul>
+ <p><li>Brave Space Alliance – photo documentation and workshop leader</li> </p>
+  <p><li>Center on Halsted – archiving youth visual stories</li> </p>
+ <p><li>Affinity Community Services – visual campaigns centered on Black queer women and trans lives</li> </p>
+</ul>
+
+<p>He co-founded the Chicago Queer Visual Archive in 2021—a grassroots initiative to preserve images, flyers, ephemera, and zines from queer nightlife and activism across decades.</p>
+<p>Jacob also teaches free photography workshops to queer and trans youth, focused on storytelling, technical skills, and visual empowerment. His mantra: <em>“We document so we cannot be erased.”</em></p>
+<p>Jacob Ramour lives in Humboldt Park with his partner, Jordan, a playwright and community organizer. Their apartment walls are filled with Polaroids, protest signs, framed prints from friends, and a rotating altar of flowers, candles, and family photos.</p>
+<p>When not photographing, Jacob writes poetry, listens to house music, and volunteers at the Gerber/Hart Library scanning LGBTQ+ archival material. He is currently working on a memoir-in-images titled <em>“My Body is a City Map,”</em> blending photography, essays, and letters to his younger self.</p>
+<p><em>“I shoot so the people I love can see themselves—clear, soft, powerful, alive. We’ve always been here. My work is just proof.”</em></p>
+<p>Jacob Ramour’s photography bears witness to the sacred and the everyday—the lipstick on coffee cups, the bruises from ballroom training, the way eyes meet across a dance floor. Through light, grain, and radical empathy, his work documents what it means to be queer and free in a city that tries to define you. His legacy is in the frame: bold, intimate, and unforgettable.</p>
+
+    </div>
+  </div>
+
+  <div class="photo-right">
+    <div class="photographer-title">BEA BROWN</div>
+   <div class="thumbnail-wrapper">
+  <a href="https://www.youtube.com/watch?v=LIcHz95zX3g" target="_blank" rel="noopener noreferrer">
+    <img src="THUMBNAIL TWO.jpg" alt="Bea Brown">
+  </a>
+</div>
+    <div class="read-more" onclick="toggleBio(this)">
+      Read More About Bea Brown
+      <span class="arrow">&#9650;</span>
+    </div>
+    <div class="bio-box">
+<p> Bea Brovin, also known in the design and photography world as <strong>Bea Brown</strong>, is a multidisciplinary artist whose work sits at the intersection of interior design, environmental storytelling, and visual anthropology. A self-taught photographer and professionally trained interior designer, Bea has gained a quiet cult following for her distinct ability to find beauty, personality, and emotional resonance in spaces that defy conventional norms—shipping container homes, communal artist warehouses, houseboats, desert domes, micro-lofts, and hybrid dwellings that blur the line between chaos and curation.</p>
+<p>Through her lens, walls speak, clutter becomes narrative, and every odd corner reveals its own poetics.</p>
+<p>Bea was born in 1984 in Marfa, Texas, to a potter mother and a jazz pianist father—both artists with a disdain for beige walls and mass-produced furniture. The home she grew up in was itself an eclectic museum: salvaged windows leaned against walls instead of paintings, an old bathtub was repurposed as a bookshelf, and the living room ceiling was painted in mural-style constellations.</p>
+<p>This early exposure to unconventional design seeded Bea’s lifelong interest in how people make space out of what they have—and how those spaces, in turn, reflect who they are.</p>
+<p>Her parents moved often, and by the time she was 18, Bea had lived in a converted school bus, a geodesic dome, a yurt, and a two-story walk-up with no doors—just heavy velvet curtains. She began photographing these homes with disposable cameras, documenting the rooms, nooks, and lighting that made them feel alive.</p>
+<p>Bea studied Interior Architecture at California College of the Arts (CCA) in San Francisco, where she fell in love with spatial theory and material experimentation. She was particularly drawn to sustainable building practices, adaptive reuse, and what she called “design with a biography”—spaces that carried visible signs of past lives, flawed structures, and evolving identities.</p>
+<p>After graduating in 2007, she worked at several interior design studios that focused on modernist homes and corporate commercial builds. But something never quite fit.</p>
+<p>“I felt like I was being asked to erase character in favor of polish,” she later reflected. “And I’m just not that girl. I don’t care if the chair is designer—I want to know why there’s a chandelier hanging in the bathroom, or what’s under the rug they won’t show anyone.”</p>
+<p>In 2012, Bea left her firm and launched her own boutique design-photography hybrid studio: <strong>BrownHaus</strong>—a nod to both her chosen moniker and the Bauhaus design movement that emphasized honest materiality and function over façade.</p>
+<p>Bea’s specialty is working with—and photographing—people who live in spaces that most designers wouldn’t know how to approach. Her subjects and clients include:</p>
+
+<ul>
+  <p><li>A family of five living in a converted grain silo in rural Iowa.</li> </p>
+  <p><li>A Brooklyn drag performer whose apartment is part salon, part costume archive, part rehearsal studio.</li> </p>
+  <p><li>A retiree who lives in a treehouse above an abandoned drive-in movie theater.</li> </p>
+  <p><li>A polyamorous collective in Portland that shares a single warehouse subdivided with vintage theater curtains.</li> </p>
+</ul>
+
+<p>Her philosophy: <em>“Show me how you live when no one’s watching.”</em></p>
+<p>Rather than staging or sterilizing these homes for photo shoots, Bea leans into their imperfections—letting piles stay piled, shelves remain askew, and light fall where it may. The result is deeply human, emotionally textured imagery where rooms feel like autobiographies rather than magazine spreads.</p>
+<p>As a photographer, Bea shoots with a mix of digital and film, often using natural light and long exposures to draw out the layered atmospheres of her subjects’ environments. Her framing is cinematic but intimate, often capturing corners, corridors, and transitional spaces rather than wide-angle glamour shots.</p>
+<p>Her stylistic trademarks include:</p>
+
+<ul>
+  <p><li>Details over overview: a chipped tile next to a houseplant. A curtain acting as a closet door. A photo taped to a fridge surrounded by fridge magnets from 12 countries.</li></p>
+  <p><li>Emotional light: Her use of shadow, dusk lighting, and lamplight warmth creates a deeply lived-in feeling.</li></p>
+  <p><li>Minimal editing: Her photos maintain the grit and grain of real life—smudges, shoe marks, and all.</li></p>
+ <p><li>Portrait-as-space: She rarely photographs people directly, but their presence is always visible through their environment.</li></p>
+</ul>
+
+<p>Bea cites inspiration from Nan Goldin, Todd Hido, and Maira Kalman, as well as from vernacular architecture, flea markets, and vintage issues of Dwell before it became too minimalist.</p>
+
+<ul>
+  <p><li>“Occupied Corners”(2016): A photo essay documenting homes where living arrangements break the blueprint—tiny kitchens repurposed as bedrooms, stairwells converted into reading nooks, laundry rooms turned podcast studios. Exhibited at The Invisible Dog Art Center in Brooklyn.</li> </p>
+ <p> <li>“Roommates: A Study in Coexistence”(2018): A series documenting shared housing across the country—focusing on how people create privacy, community, and chaos in one shared space. It included interviews with squatters, artists, chosen families, and exes who still live together.</li> </p>
+  <p><li>“Mess Worth Keeping”(2021): A photobook celebrating maximalist, cluttered, storied interiors that refuse modern minimalism. Each chapter included hand-written anecdotes from residents and floor plans drawn in crayon. The book received coverage in Domino, Apartamento, and Architectural Digest's “Best of the Weird” column.</li> </p>
+ <p> <li>“Shelf Life” (2023–present): A slow-growing series focused entirely on bookshelves and what they reveal—stacked, styled, haphazard, or curated. The series includes photographic portraits of shelves from drag queens, tattoo artists, herbalists, and hoarders.</li> </p>
+</ul>
+
+<p>She has spoken at design conferences like DesignTO, The Strange Home Summit, and Uncommon Objects Festival, and often contributes essays to independent design publications under the title <strong>“Designs That Wouldn’t Work on Pinterest.”</strong></p>
+<p>Bea sees design and photography as tools for truth-telling, not trend-setting. She’s not interested in spaces that are perfect. She's interested in the spaces that speak.</p>
+<p>“People try to erase their weirdness before I photograph them. I always tell them—please don’t clean. Leave the sock pile. Keep the spoon in the sink. That’s the good stuff. That’s where the real story lives.”</p>
+<p>She believes the home is a portrait of the self—fluid, strange, half-finished, and always worth seeing.</p>
+<p>Bea splits her time between Chicago (where she lives in a loft above an old upholstery workshop with two cats and an unreasonable number of ceramic mugs) and a cabin in New Mexico she renovated herself using scavenged materials and secondhand windows. Her own home is, naturally, a living project—equal parts design lab, photo studio, and experimental furniture graveyard.</p>
+<p>Bea Brovin, or Bea Brown as she’s more widely known, is building a legacy as a documentarian of the deeply human spaces we create when no one is telling us how to live. Whether it's a bathtub full of plants or a closet turned into a prayer room, she finds the soul in structure—and gives it the attention it deserves.</p>
+<p>She’s currently working on a new book titled <strong>Living With It</strong>, a combined photo-and-essay collection about people who live in imperfect, inherited, or chaotic spaces—and how they’ve made peace, art, and joy with what they’ve got.</p>
+
+    </div>
+  </div>
+</div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-info">
+        <div class="footer-item">
+          <img src="PHONE.png" alt="Phone" class="icon-tiny" />
+          +1-100-200-3000
+        </div>
+        <div class="footer-item">
+          <img src="@.png" alt="Email" class="icon-tiny" />
+          ouremail@email.com
+        </div>
+        <div class="footer-item footer-icons">
+          <img src="INSTAGRAMICON.png" alt="Instagram" />
+          <img src="TIKTOK.png" alt="TikTok" />
+          <img src="LINKEDIN.png" alt="LinkedIn" />
+          <img src="FACEBOOK.png" alt="Facebook" />
+        </div>
+      </div>
+    </div>
+    <div class="footer-note">
+      © 2025, The Unconventional Photography Collective. All rights reserved.<br>
+      All photographs and content on this site are the intellectual property of The Unconventional Photography Collective.
+    </div>
+  </footer>
+
+  <script>
+    function toggleBio(el) {
+      const bio = el.nextElementSibling;
+      const arrow = el.querySelector('.arrow');
+      bio.style.display = (bio.style.display === 'block') ? 'none' : 'block';
+      arrow.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
